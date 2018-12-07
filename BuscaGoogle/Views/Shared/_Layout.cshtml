@@ -1,0 +1,146 @@
+﻿@using BuscaGoogle.Helpers
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@ViewBag.Title - Busca no Google</title>
+    @Styles.Render("~/bundles/css")
+    @Scripts.Render("~/bundles/jquery")
+    <link rel="shortcut icon" type="image/ico" href="~/Images/iconTCC.png">
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="@Url.Action("Index", "Resultado", null)" class="site_title"><i class="fa fa-list-alt"></i> <span>Crawler</span></a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- menu profile quick info -->
+                    <!-- /menu profile quick info -->
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a href="@Url.Action("Index", "Resultado", null)"><i class="fa fa-list-alt"></i> Busca</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <!-- /sidebar menu -->
+
+                </div>
+            </div>
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    @Session["Nome"]
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li><a href="/Usuario/AlteraSenha/@Session["Id"]"><i class="fa fa-lock pull-right"></i> Alterar senha</a></li>
+                                    <li><a href="/Home/LogOff"><i class="fa fa-sign-out pull-right"></i> Sair</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="row">
+                    @RenderBody()
+                    <br />
+                    <br/>
+                    <br />
+                    <br/>
+                    <br />
+                    <br/>
+                    <br />
+                    <br/>
+                    <br />
+                    <br />
+                </div>
+            </div>
+            <!-- /page content -->
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    <p>&copy; @DateTime.Now.Year - Busca de termos no Google</p>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+
+
+  
+    <script src="~/Scripts/jquery.dataTables.js"></script>
+    
+    <script src="~/Scripts/dataTables.bootstrap.js"></script>
+    <link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/dataTables.responsive.min.js"></script>
+<script src="~/Scripts/responsive.bootstrap.min.js"></script>
+<link href="~/Content/responsive.bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- colocar asterisco campos requeridos -->
+
+<style>
+    .spinner {
+        max-width: 20%;
+    }
+
+    .dataTables_filter {
+        margin-right: 2px;
+    }
+</style>
+    <script type="text/javascript">
+        $(document)
+            .ready(function () {
+                $('#tableData')
+                    .DataTable({
+                        "order": [],
+                        "responsive": true,
+                        "columnDefs": [
+                            {
+                                "targets": 'no-sort',
+                                "orderable": false
+                            }
+                        ],
+                        "oLanguage": {
+                            "sProcessing": "Aguarde enquanto os dados são carregados ...",
+                            "sLengthMenu": "Mostrar _MENU_ registros por página",
+                            "sZeroRecords": "Nenhum registro correspondente ao critério encontrado",
+                            "sInfoEmpty": "Exibindo 0 a 0 de 0 registros",
+                            "sInfo": "Exibindo de _START_ a _END_ de _TOTAL_ registros",
+                            "sInfoFiltered": "",
+                            "sSearch": "Procurar",
+                            "oPaginate": {
+                                "sFirst": "Primeiro",
+                                "sPrevious": "Anterior",
+                                "sNext": "Próximo",
+                                "sLast": "Último"
+                            }
+                        }
+                    });
+            });
+    </script>
+  
+</body>
+</html>
